@@ -12,7 +12,6 @@ namespace Clonk
 {
     public partial class Form1 : Form
     {
-        // Declare RadioButton variables
         private RadioButton RB_Lever1;
         private RadioButton RB_Lever2;
         private RadioButton RB_2Red;
@@ -22,12 +21,13 @@ namespace Clonk
         private Label outputLabel;
         private Label outputGroupBoxLabel;
         private GroupBox outputGroupBox;
+        private Button copyButton; // Add a button for copying text
 
         public Form1()
         {
             InitializeComponent();
             InitializeControls();
-            UpdateOutput(null, EventArgs.Empty); // Update output on initialization
+            UpdateOutput(null, EventArgs.Empty);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -69,25 +69,22 @@ namespace Clonk
                 Font = new Font("Arial", 11, FontStyle.Regular)
             };
 
-            // RadioButton for Lever 1
             RB_Lever1 = new RadioButton
             {
                 Text = "Lever 1",
                 Location = new Point(30, 24),
                 Visible = true,
-                AutoCheck = false // Disable automatic check behavior
+                AutoCheck = false
             };
 
-            // RadioButton for Lever 2
             RB_Lever2 = new RadioButton
             {
                 Text = "Lever 6",
                 Location = new Point(30, 57),
                 Visible = true,
-                AutoCheck = false // Disable automatic check behavior
+                AutoCheck = false
             };
 
-            // GroupBox for Levers
             var groupLevers = new GroupBox
             {
                 Location = new Point(20, 20),
@@ -97,20 +94,17 @@ namespace Clonk
             groupLevers.Controls.Add(RB_Lever1);
             groupLevers.Controls.Add(RB_Lever2);
 
-            // Add Click event handlers for Lever RadioButtons
             RB_Lever1.Click += new EventHandler(RadioButton_Click);
             RB_Lever2.Click += new EventHandler(RadioButton_Click);
 
-            // RadioButton for 2+ Red Levers
             RB_2Red = new RadioButton
             {
                 Text = "2+ Red Levers",
                 Location = new Point(30, 24),
                 Visible = true,
-                Checked = true // Set default selection
+                Checked = true
             };
 
-            // RadioButton for 2+ Blue Levers
             RB_2Blue = new RadioButton
             {
                 Text = "2+ Blue Levers",
@@ -118,26 +112,23 @@ namespace Clonk
                 Visible = true
             };
 
-            // GroupBox for Red and Blue Levers
             var groupRedBlue = new GroupBox
             {
-                Location = new Point(20, 150), // Adjusted spacing
+                Location = new Point(20, 150),
                 Size = new Size(200, 100),
                 Visible = true
             };
             groupRedBlue.Controls.Add(RB_2Red);
             groupRedBlue.Controls.Add(RB_2Blue);
 
-            // RadioButton for 2 West Levers
             RB_2West = new RadioButton
             {
                 Text = "2+ West Levers",
                 Location = new Point(30, 24),
                 Visible = true,
-                Checked = true // Set default selection
+                Checked = true
             };
 
-            // RadioButton for 2 East Levers
             RB_2East = new RadioButton
             {
                 Text = "2+ East Levers",
@@ -145,34 +136,39 @@ namespace Clonk
                 Visible = true
             };
 
-            // GroupBox for West and East Levers
             var groupWestEast = new GroupBox
             {
-                Location = new Point(20, 280), // Adjusted spacing
+                Location = new Point(20, 280),
                 Size = new Size(200, 100),
                 Visible = true
             };
             groupWestEast.Controls.Add(RB_2West);
             groupWestEast.Controls.Add(RB_2East);
 
-            // GroupBox for Output
             outputGroupBox = new GroupBox
             {
-                Location = new Point(20, 410), // Adjusted spacing
-                Size = new Size(200, 60), // Increased size for spacing
+                Location = new Point(20, 410),
+                Size = new Size(200, 60),
                 Visible = true
             };
 
-            // Output Label
             outputLabel = new Label
             {
                 Location = new Point(15, 24),
                 AutoSize = true,
-                Font = new Font("Arial", 11, FontStyle.Bold) // Set font style to bold
+                Font = new Font("Arial", 11, FontStyle.Bold)
             };
             outputGroupBox.Controls.Add(outputLabel);
 
-            // Add controls to the form
+            // Move copyButton under the outputGroupBox
+            copyButton = new Button
+            {
+                Text = "Copy",
+                Location = new Point(82, 486), // Adjusted location to be under the outputGroupBox
+                Size = new Size(75, 23)
+            };
+            copyButton.Click += new EventHandler(CopyButton_Click);
+
             Controls.Add(groupLeversLabel);
             Controls.Add(groupRedBlueLabel);
             Controls.Add(groupWestEastLabel);
@@ -181,8 +177,8 @@ namespace Clonk
             Controls.Add(groupRedBlue);
             Controls.Add(groupWestEast);
             Controls.Add(outputGroupBox);
+            Controls.Add(copyButton); // Add the button to the form
 
-            // Add CheckedChanged event handlers for the RadioButtons
             RB_Lever1.CheckedChanged += new EventHandler(UpdateOutput);
             RB_Lever2.CheckedChanged += new EventHandler(UpdateOutput);
             RB_2Red.CheckedChanged += new EventHandler(UpdateOutput);
@@ -191,12 +187,14 @@ namespace Clonk
             RB_2East.CheckedChanged += new EventHandler(UpdateOutput);
         }
 
+
+
         private void RadioButton_Click(object sender, EventArgs e)
         {
             var rb = sender as RadioButton;
             if (rb != null)
             {
-                rb.Checked = !rb.Checked; // Toggle the checked state
+                rb.Checked = !rb.Checked;
             }
         }
 
@@ -277,8 +275,12 @@ namespace Clonk
                 }
             }
 
-            // Display the output in the label
             outputLabel.Text = output;
+        }
+
+        private void CopyButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(outputLabel.Text);
         }
     }
 }
