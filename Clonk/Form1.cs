@@ -39,8 +39,8 @@ namespace Clonk
             // Create labels for group boxes
             Label groupLeversLabel = new Label
             {
-                Text = "Levers 1 && 6",
-                Location = new Point(20, 8),
+                Text = "Left/Right Most Levers",
+                Location = new Point(20, 268),
                 AutoSize = true,
                 Font = new Font("Arial", 11, FontStyle.Regular)
             };
@@ -48,7 +48,7 @@ namespace Clonk
             Label groupRedBlueLabel = new Label
             {
                 Text = "Red/Blue Levers",
-                Location = new Point(20, 138),
+                Location = new Point(20, 8),
                 AutoSize = true,
                 Font = new Font("Arial", 11, FontStyle.Regular)
             };
@@ -56,7 +56,7 @@ namespace Clonk
             Label groupWestEastLabel = new Label
             {
                 Text = "East/West Levers",
-                Location = new Point(20, 268),
+                Location = new Point(20, 138),
                 AutoSize = true,
                 Font = new Font("Arial", 11, FontStyle.Regular)
             };
@@ -71,7 +71,7 @@ namespace Clonk
 
             RB_Lever1 = new RadioButton
             {
-                Text = "Lever 1",
+                Text = "Left Most",
                 Location = new Point(30, 24),
                 Visible = true,
                 AutoCheck = false
@@ -79,7 +79,7 @@ namespace Clonk
 
             RB_Lever2 = new RadioButton
             {
-                Text = "Lever 6",
+                Text = "Right Most",
                 Location = new Point(30, 57),
                 Visible = true,
                 AutoCheck = false
@@ -87,7 +87,7 @@ namespace Clonk
 
             var groupLevers = new GroupBox
             {
-                Location = new Point(20, 20),
+                Location = new Point(20, 280),
                 Size = new Size(200, 100),
                 Visible = true
             };
@@ -99,7 +99,7 @@ namespace Clonk
 
             RB_2Red = new RadioButton
             {
-                Text = "2+ Red Levers",
+                Text = "2+ Red",
                 Location = new Point(30, 24),
                 Visible = true,
                 Checked = true
@@ -107,14 +107,14 @@ namespace Clonk
 
             RB_2Blue = new RadioButton
             {
-                Text = "2+ Blue Levers",
+                Text = "2+ Blue",
                 Location = new Point(30, 57),
                 Visible = true
             };
 
             var groupRedBlue = new GroupBox
             {
-                Location = new Point(20, 150),
+                Location = new Point(20, 20),
                 Size = new Size(200, 100),
                 Visible = true
             };
@@ -123,7 +123,7 @@ namespace Clonk
 
             RB_2West = new RadioButton
             {
-                Text = "2+ West Levers",
+                Text = "2+ West",
                 Location = new Point(30, 24),
                 Visible = true,
                 Checked = true
@@ -131,14 +131,14 @@ namespace Clonk
 
             RB_2East = new RadioButton
             {
-                Text = "2+ East Levers",
+                Text = "2+ East",
                 Location = new Point(30, 57),
                 Visible = true
             };
 
             var groupWestEast = new GroupBox
             {
-                Location = new Point(20, 280),
+                Location = new Point(20, 150),
                 Size = new Size(200, 100),
                 Visible = true
             };
